@@ -41,6 +41,20 @@ class LinkedList:
         self.head = self.head.get_next()
         return value
 
+    def remove_tail(self):
+        if not self.tail:
+            return None
+
+        if not self.tail.get_next():
+            tail = self.tail
+            self.head = None
+            self.tail = None
+            return tail.get_value()
+
+        value = self.tail.get_value()
+        self.tail = self.tail.get_next()
+        return value
+
     def contains(self, value):
         if not self.head:
             return False

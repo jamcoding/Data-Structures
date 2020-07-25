@@ -1,4 +1,7 @@
-from singly_linked_list import LinkedList
+# from singly_linked_list import LinkedList
+import sys
+sys.path.append('../doubly_linked_list/doubly_linked_list.py')
+from doubly_linked_list import DoublyLinkedList
 
 """
 A stack is a data structure whose primary purpose is to store and
@@ -15,18 +18,22 @@ return elements in Last In First Out order.
 class Stack:
     def __init__(self):
         self.size = 0
-        self.storage = LinkedList()
+        self.storage = DoublyLinkedList()
 
-    def __len__(self):
-        return self.size
+    # def __len__(self):
+    #     return self.storage.__len__()
 
     def push(self, value):
         self.storage.add_to_tail(value)
         self.size += 1
 
     def pop(self):
-        if not self.storage.head:
-            return
+        if self.size == 0:
+            return None
         else:
-            self.storage.remove_tail()
+            value = self.storage.remove_from_tail()
             self.size -= 1
+        return value
+
+    def __len__(self):
+        return self.storage.__len__()

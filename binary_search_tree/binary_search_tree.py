@@ -1,3 +1,5 @@
+from collections import deque
+
 """
 Binary search trees are a data structure that enforce an ordering over 
 the data they store. That ordering in turn makes it a lot more efficient 
@@ -63,17 +65,42 @@ class BSTNode:
     # Print all the values in order from low to high
     # Hint:  Use a recursive, depth first traversal
     def in_order_print(self):
-        pass
+        if not self:
+            return
+
+        if self.left:
+            self.left.in_order_print()
+
+        print(self.value)
+
+        if self.right:
+            self.right.in_order_print
 
     # Print the value of every node, starting with the given node,
     # in an iterative breadth first traversal
     def bft_print(self):
-        pass
+        qq = deque()
+        qq.append(self)
+
+        while len(qq) > 0:
+            current = qq.popleft()
+            print(current.value)
+            if current.left:
+                qq.append(current.left)
+            if current.right:
+                qq.append(current.right)
 
     # Print the value of every node, starting with the given node,
     # in an iterative depth first traversal
     def dft_print(self):
-        pass
+        s = []
+        s.append(self)
+
+        while len(s) > 0:
+            current = s.pop()
+            print(current.value)
+            if current.left:
+                s.append(current.left)
 
     # Stretch Goals -------------------------
     # Note: Research may be required
@@ -102,10 +129,10 @@ bst.insert(2)
 bst.bft_print()
 bst.dft_print()
 
-# print("elegant methods")
-# print("pre order")
-# bst.pre_order_dft()
-# print("in order")
-# bst.in_order_dft()
-# print("post order")
-# bst.post_order_dft()
+print("elegant methods")
+print("pre order")
+bst.pre_order_dft()
+print("in order")
+bst.in_order_print()
+print("post order")
+bst.post_order_dft()

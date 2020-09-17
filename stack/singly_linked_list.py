@@ -85,6 +85,37 @@ class LinkedList:
             # return the value
             return value
 
+    def remove_tail(self):
+        # check for empty list
+        if self.head is None and self.tail is None:
+            return None
+        # check if there is only one node
+        if self.head == self.tail:
+            # store the value of the nod ethat we are going to remove
+            value = self.tail.get_value()
+            # remove the node
+            # set the head and tail to None
+            self.head = None
+            self.tail = None
+            return value
+        else:
+            # store the value of the node that we are going to remove
+            value = self.head.get_value()
+
+            # set the "self.tail" to the second to last node
+            # do this by traversing the whole list from beginning to end
+            # starting from the head
+            current_node = self.head
+            # keep iterating until the node after "current_node" is the tail
+            while current_node.get_next() != self.tail:
+                # keep looping
+                current_node = current_node.get_next()
+            # at the end of th iteration set "self.tail" to the current_node
+            self.tail = current_node
+            # set the new tail's "next_node" to None
+            self.tail.set_next(None)
+            return value
+
     def get_max(self):
         # check if there is an item in the List
         if self.head is None and self.tail is None:

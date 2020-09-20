@@ -62,6 +62,21 @@ class LinkedList:
         # value not found
         return False
 
+    def add_to_head(self, value):
+        # wrap the input value in a node
+        new_node = Node(value)
+        # check if the linked list is empty
+        if not self.head and not self.tail:
+            # if the list is initally empty, set both head and tail to the new node
+            self.head = new_node
+            self.tail = new_node
+        # we have a non-empty list, add the new node to the head
+        else:
+            # set the new node's "next" to refer to the current head
+            new_node.set_next(self.head)
+            # set the list's head reference to the new node
+            self.head = new_node
+
     def remove_head(self):
         # there is no item/Node in Linked List
         if self.head is None and self.tail is None:
